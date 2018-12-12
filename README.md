@@ -38,4 +38,3 @@ The CosmosDB documentation can be found at https://docs.microsoft.com/en-us/azur
 - https://github.com/Azure-Samples/cosmos-dotnet-getting-started
 - https://github.com/Azure-Samples/cosmos-dotnet-todo-app
 - https://github.com/Azure-Samples/cosmos-dotnet-core-getting-started
-- 
