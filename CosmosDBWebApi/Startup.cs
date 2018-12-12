@@ -32,7 +32,13 @@ namespace CosmosDBWebApi
 
             services.AddMvc();
 
-            services.AddApiVersioning();
+            services.AddApiVersioning(
+                options =>
+                {
+                    options.ReportApiVersions = true;
+                    options.DefaultApiVersion = new ApiVersion(2, 0); // Specify the default api version
+                    options.AssumeDefaultVersionWhenUnspecified = true; // Assume that the caller wants the default version if they don't specify
+                });
 
             services.AddRouting(
                 options =>
@@ -65,6 +71,7 @@ namespace CosmosDBWebApi
 
             services.AddTransient<IOrderCosmosDbSdk2Repository, OrderCosmosDbSdk2Repository>();
             services.AddTransient<IOrderCosmosDbSdk3Repository, OrderCosmosDbSdk3Repository>();
+            services.AddTransient<IOrderItemCosmosDbSdk3Repository, OrderItemCosmosDbSdk3Repository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

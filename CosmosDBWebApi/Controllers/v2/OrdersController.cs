@@ -119,7 +119,8 @@ namespace CosmosDBWebApi.Controllers.v2
 
             var result =
                 await _orderRepository.UpdateByIdAsync(
-                    id, order);
+                    id, 
+                    order);
 
             return Ok(result);
         }
