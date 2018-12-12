@@ -37,7 +37,7 @@ You will also need to update your `appsettings.json` file OR create an `appsetti
 
 ### Postman
 
-Scripts for testing the API can be imported into Postman from.
+Scripts for testing the API can be imported into Postman from https://github.com/mattruma/CosmosDBWebApi/blob/master/CosmosDBWebApi%20API.postman_collection.json.
 
 ## Links
 
