@@ -17,6 +17,20 @@ Replace the variables with your naming convention for Azure resources.
 
 Screenshot of where to find the COSMOS_URI and the COSMOS_KEY values.
 
+You will also need to update your `appsettings.json` file OR create an `appsettings.Development.json` file with the following settings:
+
+```
+{  
+  "Azure": {
+    "CosmosDB": {
+      "DatabaseId": "COSMOS_DB_NAME",
+      "Key": "COSMOS_KEY",
+      "Endpoint": "COSMOS_URI"
+    }
+  }
+}
+```
+
 
 ## Links
 
