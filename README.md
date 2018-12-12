@@ -1,4 +1,6 @@
-﻿Run the following in the azure cli:
+﻿## Setup
+
+Run the following in the azure cli:
 
 ```
 az group create --name RESOURCE_GROUP_NAME --location eastus2
@@ -15,9 +17,6 @@ Replace the variables with your naming convention for Azure resources.
 
 Screenshot of where to find the COSMOS_URI and the COSMOS_KEY values.
 
-For more information on the CosmosDB SDK 3.0 see https://azure.microsoft.com/en-us/blog/azure-cosmos-dotnet-sdk-version-3-0-now-in-public-preview/.
-
-The CosmosDB documentation can be found at https://docs.microsoft.com/en-us/azure/cosmos-db.
 
 ## Links
 
@@ -26,6 +25,7 @@ The CosmosDB documentation can be found at https://docs.microsoft.com/en-us/azur
 - Modeling Data https://docs.microsoft.com/en-us/azure/cosmos-db/modeling-data
 - Developing Locally https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator
 - Partition Keys https://docs.microsoft.com/en-us/azure/cosmos-db/synthetic-partition-keys
+- CosmosDB 3.0 SDK https://azure.microsoft.com/en-us/blog/azure-cosmos-dotnet-sdk-version-3-0-now-in-public-preview/.
 
 ## Training Resources
 
@@ -38,3 +38,5 @@ The CosmosDB documentation can be found at https://docs.microsoft.com/en-us/azur
 - https://github.com/Azure-Samples/cosmos-dotnet-getting-started
 - https://github.com/Azure-Samples/cosmos-dotnet-todo-app
 - https://github.com/Azure-Samples/cosmos-dotnet-core-getting-started
+
+The entire CosmosDB documentation can be found at https://docs.microsoft.com/en-us/azure/cosmos-db.
