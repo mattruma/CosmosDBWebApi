@@ -16,10 +16,8 @@ namespace CosmosDBWebApi.Data
         Task<Order> FetchByIdAsync(
             Guid id);
 
-        Task<IEnumerable<Order>> FetchList();
-
-        Task<IEnumerable<Order>> FetchListByItemIdAsync(
-            Guid itemId);
+        Task<IEnumerable<Order>> FetchListAsync(
+            Guid? itemId);
 
         Task<Order> UpdateByIdAsync(
             Guid id,

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CosmosDBWebApi.Controllers
@@ -35,7 +36,8 @@ namespace CosmosDBWebApi.Controllers
             }
 
             var result =
-                await _orderRepository.AddAsync(order);
+                await _orderRepository.AddAsync(
+                    order);
 
             return CreatedAtRoute("FetchOrder", new { id = result.Id }, result);
         }
@@ -53,7 +55,8 @@ namespace CosmosDBWebApi.Controllers
                 return BadRequest("Id required.");
             }
 
-            await _orderRepository.DeleteByIdAsync(id);
+            await _orderRepository.DeleteByIdAsync(
+                id);
 
             return NoContent();
         }
@@ -72,7 +75,8 @@ namespace CosmosDBWebApi.Controllers
             }
 
             var result =
-                await _orderRepository.FetchByIdAsync(id);
+                await _orderRepository.FetchByIdAsync(
+                    id);
 
             return Ok(result);
         }
@@ -81,10 +85,12 @@ namespace CosmosDBWebApi.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Order>))]
         [ProducesResponseType(401)]
         [SwaggerOperation(Tags = new[] { "Orders" })]
-        public async Task<IActionResult> FetchListAsync()
+        public async Task<IActionResult> FetchListAsync(
+            [FromQuery]Guid? itemId)
         {
             var result =
-                await _orderRepository.FetchList();
+                await _orderRepository.FetchListAsync(
+                    itemId);
 
             return Ok(result);
         }
@@ -109,8 +115,11 @@ namespace CosmosDBWebApi.Controllers
                 return BadRequest("Id required.");
             }
 
+            order.Id = id;
+
             var result =
-                await _orderRepository.UpdateByIdAsync(id, order);
+                await _orderRepository.UpdateByIdAsync(
+                    id, order);
 
             return Ok(result);
         }

@@ -13,32 +13,33 @@ namespace CosmosDBWebApi.Data
         {
         }
 
-        public Task<Order> AddAsync(Order order)
+        public Task<Order> AddAsync(
+            Order order)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Order> DeleteByIdAsync(Guid id)
+        public Task<Order> DeleteByIdAsync(
+            Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Order> FetchByIdAsync(Guid id)
+        public Task<Order> FetchByIdAsync(
+            Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Order>> FetchList()
+        public Task<IEnumerable<Order>> FetchListAsync(
+            Guid? itemId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Order>> FetchListByItemIdAsync(Guid itemId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Order> UpdateByIdAsync(Guid id, Order order)
+        public Task<Order> UpdateByIdAsync(
+            Guid id, 
+            Order order)
         {
             throw new NotImplementedException();
         }

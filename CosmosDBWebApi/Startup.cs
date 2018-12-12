@@ -73,6 +73,8 @@ namespace CosmosDBWebApi
 
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "CosmosDBWebApi V1");
 
+                c.InjectStylesheet("/swagger-ui/custom.css");
+
                 c.DocExpansion(DocExpansion.List);
 
                 c.EnableFilter();
