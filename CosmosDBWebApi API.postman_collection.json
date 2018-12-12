@@ -1,0 +1,762 @@
+{
+	"info": {
+		"_postman_id": "8f2b3011-7cf6-4b5a-a5cb-9c85b1944a93",
+		"name": "CosmosDBWebApi API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "v1",
+			"item": [
+				{
+					"name": "Order Add",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "61f7f73c-5ae1-49a8-8551-1bea2b074b71",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"    pm.response.to.be.json; ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    pm.globals.set(\"orderId\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"shopperName\": \"shopperName-{{$guid}}\",\r\n  \"shopperEmail\": \"shopperEmail-{{$guid}}\",\r\n  \"items\": [\r\n    {\r\n      \"name\": \"name-{{$guid}}\",\r\n      \"quantity\": {{$randomInt}},\r\n      \"isTaxable\": true\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost:44346/api/v1/orders",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8148af47-7168-4fc3-84c5-4ccfaf8807cb",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:44346/api/v1/orders/{{orderId}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"{{orderId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Fetch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "98cbcc71-51a5-48ca-ba84-99e0efc7e19a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"    pm.response.to.be.json; ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:44346/api/v1/orders/{{orderId}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"{{orderId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Fetch List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ac60db96-0947-414b-bc0d-e048782721e6",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"    pm.response.to.be.json; ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:44346/api/v1/orders?",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "itemId",
+									"value": "36ef12dc-84dd-4512-ab9c-97d8ad989dad",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "61f7f73c-5ae1-49a8-8551-1bea2b074b71",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"    pm.response.to.be.json; ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"shopperName\": \"shopperName-{{$guid}}\",\r\n  \"shopperEmail\": \"shopperEmail-{{$guid}}\",\r\n  \"items\": [\r\n    {\r\n      \"name\": \"name-{{$guid}}\",\r\n      \"quantity\": {{$randomInt}},\r\n      \"isTaxable\": true\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost:44346/api/v1/orders/{{orderId}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"{{orderId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "v2",
+			"item": [
+				{
+					"name": "Order Add",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "61f7f73c-5ae1-49a8-8551-1bea2b074b71",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"    pm.response.to.be.json; ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    pm.globals.set(\"orderId\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"shopperName\": \"shopperName-{{$guid}}\",\r\n  \"shopperEmail\": \"shopperEmail-{{$guid}}\",\r\n  \"items\": [\r\n    {\r\n      \"name\": \"name-{{$guid}}\",\r\n      \"quantity\": {{$randomInt}},\r\n      \"isTaxable\": true\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost:44346/api/v2/orders",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"v2",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Item Add",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "61f7f73c-5ae1-49a8-8551-1bea2b074b71",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"    pm.response.to.be.json; ",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    pm.globals.set(\"orderItemId\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"name-{{$guid}}\",\r\n  \"quantity\": {{$randomInt}},\r\n  \"isTaxable\": true\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost:44346/api/v2/orders/{{orderId}}/items",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"v2",
+								"orders",
+								"{{orderId}}",
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8148af47-7168-4fc3-84c5-4ccfaf8807cb",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:44346/api/v2/orders/{{orderId}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"v2",
+								"orders",
+								"{{orderId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Item Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8148af47-7168-4fc3-84c5-4ccfaf8807cb",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:44346/api/v2/orders/{{orderId}}/items/{{orderItemId}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"v2",
+								"orders",
+								"{{orderId}}",
+								"items",
+								"{{orderItemId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Fetch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "98cbcc71-51a5-48ca-ba84-99e0efc7e19a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"    pm.response.to.be.json; ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:44346/api/v2/orders/{{orderId}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"v2",
+								"orders",
+								"{{orderId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Item Fetch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "98cbcc71-51a5-48ca-ba84-99e0efc7e19a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"    pm.response.to.be.json; ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:44346/api/v2/orders/{{orderId}}/items/{{orderItemId}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"v2",
+								"orders",
+								"{{orderId}}",
+								"items",
+								"{{orderItemId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Fetch List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ac60db96-0947-414b-bc0d-e048782721e6",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"    pm.response.to.be.json; ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:44346/api/v2/orders?",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"v2",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "itemId",
+									"value": "36ef12dc-84dd-4512-ab9c-97d8ad989dad",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Item Fetch List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ac60db96-0947-414b-bc0d-e048782721e6",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"    pm.response.to.be.json; ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:44346/api/v2/orders/{{orderId}}/items?",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"v2",
+								"orders",
+								"{{orderId}}",
+								"items"
+							],
+							"query": [
+								{
+									"key": "itemId",
+									"value": "36ef12dc-84dd-4512-ab9c-97d8ad989dad",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "61f7f73c-5ae1-49a8-8551-1bea2b074b71",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"    pm.response.to.be.json; ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"shopperName\": \"shopperName-{{$guid}}\",\r\n  \"shopperEmail\": \"shopperEmail-{{$guid}}\",\r\n  \"items\": [\r\n    {\r\n      \"name\": \"name-{{$guid}}\",\r\n      \"quantity\": {{$randomInt}},\r\n      \"isTaxable\": true\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost:44346/api/v2/orders/{{orderId}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"v2",
+								"orders",
+								"{{orderId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Update Item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "61f7f73c-5ae1-49a8-8551-1bea2b074b71",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response must be valid and have a body\", function () {",
+									"    pm.response.to.be.json; ",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"name-{{$guid}}\",\r\n  \"quantity\": {{$randomInt}},\r\n  \"isTaxable\": true\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost:44346/api/v2/orders/{{orderId}}/items/{{orderItemId}}",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"v2",
+								"orders",
+								"{{orderId}}",
+								"items",
+								"{{orderItemId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "19d9458f-a265-4010-9b3b-5c962596cf94",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4436afcf-c4cb-468d-8b5d-800a9c477f96",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}

@@ -1,5 +1,7 @@
 ﻿## Setup
 
+### Azure
+
 Run the following in the azure cli:
 
 ```
@@ -17,6 +19,8 @@ Replace the variables with your naming convention for Azure resources.
 
 Screenshot of where to find the COSMOS_URI and the COSMOS_KEY values.
 
+### Visual Studio Project
+
 You will also need to update your `appsettings.json` file OR create an `appsettings.Development.json` file with the following settings:
 
 ```
@@ -31,6 +35,9 @@ You will also need to update your `appsettings.json` file OR create an `appsetti
 }
 ```
 
+### Postman
+
+Scripts for testing the API can be imported into Postman from.
 
 ## Links
 
