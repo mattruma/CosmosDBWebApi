@@ -3,10 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28315.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CosmosDBWebApi", "CosmosDBWebApi\CosmosDBWebApi.csproj", "{2E734231-EF88-4EF7-83F1-69B88A900291}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosmosDBWebApi", "CosmosDBWebApi\CosmosDBWebApi.csproj", "{2E734231-EF88-4EF7-83F1-69B88A900291}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EED82A33-CF13-445C-8735-E2096A951893}"
 	ProjectSection(SolutionItems) = preProject
+		2018-12-12_11-23-48.png = 2018-12-12_11-23-48.png
+		CosmosDBWebApi API.postman_collection.json = CosmosDBWebApi API.postman_collection.json
 		README.md = README.md
 	EndProjectSection
 EndProject
