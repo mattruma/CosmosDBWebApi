@@ -14,3 +14,28 @@ Replace the variables with your naming convention for Azure resources.
 ![alt text](2018-12-12_11-23-48.png)
 
 Screenshot of where to find the COSMOS_URI and the COSMOS_KEY values.
+
+For more information on the CosmosDB SDK 3.0 see https://azure.microsoft.com/en-us/blog/azure-cosmos-dotnet-sdk-version-3-0-now-in-public-preview/.
+
+The CosmosDB documentation can be found at https://docs.microsoft.com/en-us/azure/cosmos-db.
+
+## Links
+
+- Working with Azure Cosmos databases, containers and items https://docs.microsoft.com/en-us/azure/cosmos-db/databases-containers-items
+- SQL Query Examples https://docs.microsoft.com/en-us/azure/cosmos-db/how-to-sql-query
+- Modeling Data https://docs.microsoft.com/en-us/azure/cosmos-db/modeling-data
+- Developing Locally https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator
+- Partition Keys https://docs.microsoft.com/en-us/azure/cosmos-db/synthetic-partition-keys
+
+## Training Resources
+
+- https://docs.microsoft.com/en-us/learn/modules/access-data-with-cosmos-db-and-sql-api/
+- https://docs.microsoft.com/en-us/learn/modules/build-cosmos-db-app-with-vscode/
+
+## Examples 
+
+- https://github.com/Azure-Samples/dotnet-cosmosdb-quickstart
+- https://github.com/Azure-Samples/cosmos-dotnet-getting-started
+- https://github.com/Azure-Samples/cosmos-dotnet-todo-app
+- https://github.com/Azure-Samples/cosmos-dotnet-core-getting-started
+- 
