@@ -4,20 +4,20 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace CosmosDBWebApi.Controllers
+namespace CosmosDBWebApi.Controllers.v2
 {
-    [Route("api/orders")]
+    [ApiVersion("2.0")]
+    [Route("api/v{version:apiVersion}/orders")]
     [Produces("application/json")]
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private readonly IOrderRepository _orderRepository;
+        private readonly IOrderCosmosDbSdk3Repository _orderRepository;
 
         public OrdersController(
-            IOrderRepository orderRepository)
+            IOrderCosmosDbSdk3Repository orderRepository)
         {
             _orderRepository = orderRepository;
         }

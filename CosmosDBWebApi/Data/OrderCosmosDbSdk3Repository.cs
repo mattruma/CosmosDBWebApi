@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CosmosDBWebApi.Data
 {
-    public class OrderCosmosDbSdk3Repository : CosmosDbSdk3Repository, IOrderRepository
+    public class OrderCosmosDbSdk3Repository : CosmosDbSdk3Repository, IOrderCosmosDbSdk3Repository
     {
         public OrderCosmosDbSdk3Repository(
             IOptions<AzureCosmosDbOptions> azureCosmosDbOptions) : base(azureCosmosDbOptions)

@@ -1,4 +1,7 @@
 ﻿using CosmosDBWebApi.Helpers;
+using Microsoft.Azure.Documents;
+using Microsoft.Azure.Documents.Client;
+using Microsoft.Azure.Documents.Linq;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -6,42 +9,120 @@ using System.Threading.Tasks;
 
 namespace CosmosDBWebApi.Data
 {
-    public class OrderCosmosDbSdk2Repository : CosmosDbSdk2Repository, IOrderRepository
+    public class OrderCosmosDbSdk2Repository : CosmosDbSdk2Repository, IOrderCosmosDbSdk2Repository
     {
         public OrderCosmosDbSdk2Repository(
           IOptions<AzureCosmosDbOptions> azureCosmosDbOptions) : base(azureCosmosDbOptions)
         {
         }
 
-        public Task<Order> AddAsync(
+        public async Task<Order> AddAsync(
             Order order)
         {
-            throw new NotImplementedException();
+            var requestOptions =
+                new RequestOptions
+                {
+                    PartitionKey = new PartitionKey(order.Id.ToString())
+                };
+
+            var orderDocument = await _documentClient.CreateDocumentAsync(
+                UriFactory.CreateDocumentCollectionUri(
+                    _azureCosmosDbOptions.Value.DatabaseId, "orders"), order, requestOptions);
+
+            return
+                (Order)((dynamic)orderDocument.Resource);
         }
 
-        public Task<Order> DeleteByIdAsync(
+        public async Task<Order> DeleteByIdAsync(
             Guid id)
         {
-            throw new NotImplementedException();
+            var requestOptions =
+               new RequestOptions
+               {
+                   PartitionKey = new PartitionKey(id.ToString())
+               };
+
+            var orderDocument = await _documentClient.DeleteDocumentAsync(
+                UriFactory.CreateDocumentUri(
+                    _azureCosmosDbOptions.Value.DatabaseId, "orders", id.ToString()), requestOptions);
+
+            return
+                (Order)((dynamic)orderDocument.Resource);
         }
 
-        public Task<Order> FetchByIdAsync(
+        public async Task<Order> FetchByIdAsync(
             Guid id)
         {
-            throw new NotImplementedException();
+            var requestOptions =
+                new RequestOptions
+                {
+                    PartitionKey = new PartitionKey(id.ToString())
+                };
+
+            var orderDocument =
+                await _documentClient.ReadDocumentAsync(
+                    UriFactory.CreateDocumentUri(
+                        _azureCosmosDbOptions.Value.DatabaseId, "orders", id.ToString()), requestOptions);
+
+            return
+                (Order)((dynamic)orderDocument.Resource);
         }
 
-        public Task<IEnumerable<Order>> FetchListAsync(
+        public async Task<IEnumerable<Order>> FetchListAsync(
             Guid? itemId)
         {
-            throw new NotImplementedException();
+            var feedOptions =
+                  new FeedOptions
+                  {
+                      MaxItemCount = -1,
+                      EnableCrossPartitionQuery = true
+                  };
+
+            var query =
+                $"SELECT * FROM o";
+
+            if (itemId.HasValue)
+            {
+                query += $" WHERE ARRAY_CONTAINS(o.items, {{ \"id\": \"{itemId}\" }}, true)";
+            }
+
+            var queryDefinition =
+                new SqlQuerySpec(query);
+
+            var orderDocumentQuery =
+                _documentClient.CreateDocumentQuery<Order>(
+                    UriFactory.CreateDocumentCollectionUri(
+                        _azureCosmosDbOptions.Value.DatabaseId, "orders"), queryDefinition, feedOptions)
+                    .AsDocumentQuery();
+
+            var orderList =
+                new List<Order>();
+
+            while (orderDocumentQuery.HasMoreResults)
+            {
+                orderList.AddRange(
+                    await orderDocumentQuery.ExecuteNextAsync<Order>());
+            }
+
+            return orderList;
         }
 
-        public Task<Order> UpdateByIdAsync(
-            Guid id, 
+        public async Task<Order> UpdateByIdAsync(
+            Guid id,
             Order order)
         {
-            throw new NotImplementedException();
+            var requestOptions =
+               new RequestOptions
+               {
+                   PartitionKey = new PartitionKey(id.ToString())
+               };
+
+            var orderDocument = await _documentClient.ReplaceDocumentAsync(
+                 UriFactory.CreateDocumentUri(
+                     _azureCosmosDbOptions.Value.DatabaseId, "orders", id.ToString()), order, requestOptions);
+
+            return
+                (Order)((dynamic)orderDocument.Resource);
         }
     }
 }
