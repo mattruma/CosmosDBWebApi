@@ -64,7 +64,7 @@ namespace CosmosDBWebApi
             services.Configure<AzureCosmosDbOptions>(
                options =>
                {
-                   options.DatabaseId = Configuration["Azure:CosmosDb:DatabaseId"];
+                   options.DatabaseId = Configuration["Azure:CosmosDb:DatabaseId"]; // Could read from key vault if you wanted to  
                    options.Key = Configuration["Azure:CosmosDb:Key"];
                    options.Endpoint = Configuration["Azure:CosmosDb:Endpoint"];
                });

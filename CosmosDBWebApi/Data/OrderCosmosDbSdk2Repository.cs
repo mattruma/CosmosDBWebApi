@@ -5,6 +5,7 @@ using Microsoft.Azure.Documents.Linq;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CosmosDBWebApi.Data
@@ -16,6 +17,8 @@ namespace CosmosDBWebApi.Data
         {
         }
 
+        // https://github.com/Azure/azure-cosmos-dotnet-v2/blob/f374cc601f4cf08d11c88f0c3fa7dcefaf7ecfe8/samples/code-samples/DocumentManagement/Program.cs#L198
+
         public async Task<Order> AddAsync(
             Order order)
         {
@@ -24,6 +27,10 @@ namespace CosmosDBWebApi.Data
                 {
                     PartitionKey = new PartitionKey(order.Id.ToString())
                 };
+
+            // Remember, to do bulk insert of documents it is recommended to use a Stored Procedure
+            // and pass a batch of documents to the Stored Prcoedure. This will cut down on the number
+            // of roundtrips required. 
 
             var orderDocument = await _documentClient.CreateDocumentAsync(
                 UriFactory.CreateDocumentCollectionUri(
@@ -88,6 +95,14 @@ namespace CosmosDBWebApi.Data
 
             var queryDefinition =
                 new SqlQuerySpec(query);
+
+            // Can do some LINQ expressions, but limited support, e.g. does not support Any, Contains, etc.
+
+            // var querySalesOrder = _documentClient.CreateDocumentQuery<Order>(
+            //     UriFactory.CreateDocumentCollectionUri(
+            //         _azureCosmosDbOptions.Value.DatabaseId, "orders"))
+            //             .Where(o => o.Id == new Guid("b247199e-0483-4c12-a40a-66dfc15a1d25"))
+            //             .AsEnumerable();
 
             var orderDocumentQuery =
                 _documentClient.CreateDocumentQuery<Order>(

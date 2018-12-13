@@ -102,8 +102,10 @@ namespace CosmosDBWebApi.Data
             var query =
                 $"SELECT i.id, i.name, i.quantity, i.isTaxable FROM o JOIN i IN o.items";
 
-            //var query =
-            //    $"SELECT i.id, i.name, i.quantity, i.isTaxable FROM o JOIN i IN o.items WHERE o.id = \"{orderId}\"";
+            // Since the partition is based on the orderid we do not really need to query for the orderid 
+
+            // var query =
+            //     $"SELECT i.id, i.name, i.quantity, i.isTaxable FROM o JOIN i IN o.items WHERE o.id = \"{orderId}\"";
 
             var queryDefinition =
                 new CosmosSqlQueryDefinition(query);

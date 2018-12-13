@@ -1,8 +1,5 @@
 ﻿using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Options;
-using System;
-using System.Net;
-using System.Threading.Tasks;
 
 namespace CosmosDBWebApi.Helpers
 {
