@@ -35,8 +35,8 @@ Display the newly created CosmosDB database.
 "Azure": {
     "CosmosDB": {
         "DatabaseId": "root",
-        "Key": "GstAaCUJrUF3uzFttVLLcmYTfrXZOWdGNpPUaHNHIbjeFtCxwyhY1jZfQlHXkJVsLUEvnQqHexWSy2795hoVaw==",
-        "Endpoint": "https://marumacosmosdbwebapi.documents.azure.com:443/"
+        "Key": "COSMOS_KEY",
+        "Endpoint": "COSMOS_URI"
     }
 }
 ``` 
