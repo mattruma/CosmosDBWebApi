@@ -11,6 +11,8 @@ Walk-through an example of a Web API the performs CRUD operations using the Cosm
 For more information on the CosmosDB 3.0 SDK see
 https://azure.microsoft.com/en-us/blog/azure-cosmos-dotnet-sdk-version-3-0-now-in-public-preview/
 
+Show Swagger at https://localhost:44346/swagger/index.html.
+
 ## Setup the Environment ##
 
 Navigate to https://shell.azure.com/

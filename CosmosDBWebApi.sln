@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		2018-12-12_11-23-48.png = 2018-12-12_11-23-48.png
 		CosmosDBWebApi API.postman_collection.json = CosmosDBWebApi API.postman_collection.json
+		DEMO.md = DEMO.md
 		README.md = README.md
 	EndProjectSection
 EndProject
