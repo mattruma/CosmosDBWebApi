@@ -11,7 +11,7 @@ az cosmosdb create --name COSMOS_DB_NAME --resource-group RESOURCE_GROUP_NAME
 
 az cosmosdb database create --db-name root --url-connection COSMOS_URI --key COSMOS_KEY
 
-az cosmosdb collection create --collection-name orders --db-name COSMOS_DB_NAME --partition-key-path "/id" --throughput 400 --url-connection COSMOS_URI --key COSMOS_KEY
+az cosmosdb collection create --collection-name orders --db-name root --partition-key-path "/id" --throughput 400 --url-connection COSMOS_URI --key COSMOS_KEY
 ```
 Replace the variables with your naming convention for Azure resources.
 
