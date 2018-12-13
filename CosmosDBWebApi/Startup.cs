@@ -49,9 +49,9 @@ namespace CosmosDBWebApi
             services.AddSwaggerGen(
                 options =>
                 {
-                    options.SwaggerDoc("v1", new Info { Title = "CosmosDBWebApi API", Version = "v1", Description = "Uses the ComsmosDB 2.0 SDK." });
+                    options.SwaggerDoc("v1", new Info { Title = "CosmosDBWebApi API", Version = "v1", Description = "Uses the CosmosDB 2.0 SDK." });
 
-                    options.SwaggerDoc("v2", new Info { Title = "CosmosDBWebApi API", Version = "v2", Description = "Uses the ComsmosDB 3.0 SDK." });
+                    options.SwaggerDoc("v2", new Info { Title = "CosmosDBWebApi API", Version = "v2", Description = "Uses the CosmosDB 3.0 SDK." });
 
                     options.EnableAnnotations();
 
