@@ -7,7 +7,7 @@ namespace CosmosDBWebApi.Helpers
     {
         private readonly IOptions<AzureCosmosDbOptions> _azureCosmosDbOptions;
         private readonly CosmosClient _cosmosClient;
-        protected readonly CosmosDatabase _cosmosDatabase;
+        protected readonly Database _cosmosDatabase;
 
         public CosmosDbSdk3Repository(
             IOptions<AzureCosmosDbOptions> azureCosmosDbOptions)
@@ -19,7 +19,7 @@ namespace CosmosDBWebApi.Helpers
                 new CosmosClient(
                     _azureCosmosDbOptions.Value.Endpoint,
                     _azureCosmosDbOptions.Value.Key);
-            _cosmosDatabase = _cosmosClient.Databases[_azureCosmosDbOptions.Value.DatabaseId];
+            _cosmosDatabase = _cosmosClient.GetDatabase(_azureCosmosDbOptions.Value.DatabaseId);
         }
     }
 }

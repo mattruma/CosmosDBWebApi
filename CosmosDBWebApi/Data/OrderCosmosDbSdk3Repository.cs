@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace CosmosDBWebApi.Data
 {
@@ -18,12 +19,12 @@ namespace CosmosDBWebApi.Data
             Order order)
         {
             var orderContainer =
-               _cosmosDatabase.Containers["orders"];
+               _cosmosDatabase.GetContainer("orders");
 
             var orderDocument =
-                await orderContainer.Items.CreateItemAsync<Order>(
-                    order.Id.ToString(),
-                    order);
+                await orderContainer.CreateItemAsync<Order>(
+                    order, 
+                    new PartitionKey(order.Id.ToString()));
 
             return orderDocument.Resource;
         }
@@ -32,12 +33,12 @@ namespace CosmosDBWebApi.Data
             Guid id)
         {
             var orderContainer =
-               _cosmosDatabase.Containers["orders"];
+               _cosmosDatabase.GetContainer("orders");
 
             var orderDocument =
-                await orderContainer.Items.DeleteItemAsync<Order>(
+                await orderContainer.DeleteItemAsync<Order>(
                     id.ToString(),
-                    id.ToString());
+                    new PartitionKey(id.ToString()));
 
             return orderDocument.Resource;
         }
@@ -46,12 +47,12 @@ namespace CosmosDBWebApi.Data
             Guid id)
         {
             var orderContainer =
-               _cosmosDatabase.Containers["orders"];
+               _cosmosDatabase.GetContainer("orders");
 
             var orderDocument =
-                await orderContainer.Items.ReadItemAsync<Order>(
+                await orderContainer.ReadItemAsync<Order>(
                     id.ToString(),
-                    id.ToString());
+                    new PartitionKey(id.ToString()));
 
             return orderDocument.Resource;
         }
@@ -60,7 +61,7 @@ namespace CosmosDBWebApi.Data
             Guid? itemId)
         {
             var orderContainer =
-                _cosmosDatabase.Containers["orders"];
+                _cosmosDatabase.GetContainer("orders");
 
             var query =
                 $"SELECT * FROM o";
@@ -71,17 +72,17 @@ namespace CosmosDBWebApi.Data
             }
 
             var queryDefinition =
-                new CosmosSqlQueryDefinition(query);
+                new QueryDefinition(query);
 
             var orders =
-                orderContainer.Items.CreateItemQuery<Order>(queryDefinition, maxConcurrency: 2);
+                orderContainer.GetItemQueryIterator<Order>(queryDefinition, null, new QueryRequestOptions() { MaxConcurrency = 2 });
 
             var orderList = new List<Order>();
 
             while (orders.HasMoreResults)
             {
                 orderList.AddRange(
-                    await orders.FetchNextSetAsync());
+                    await orders.ReadNextAsync());
             };
 
             return orderList;
@@ -92,13 +93,14 @@ namespace CosmosDBWebApi.Data
             Order order)
         {
             var orderContainer =
-               _cosmosDatabase.Containers["orders"];
+               _cosmosDatabase.GetContainer("orders");
 
             var orderDocument =
-                await orderContainer.Items.ReplaceItemAsync<Order>(
+                await orderContainer.ReplaceItemAsync<Order>(
+                    order,
                     id.ToString(),
-                    id.ToString(),
-                    order);
+                    new PartitionKey(id.ToString())
+                    );
 
             return orderDocument.Resource;
         }
